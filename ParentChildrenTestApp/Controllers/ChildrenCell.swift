@@ -8,7 +8,7 @@
 import UIKit
 import RAGTextField
 
-class ChildrenCell: UITableViewCell, UITextFieldDelegate, Subscriber {
+class ChildrenCell: UITableViewCell, UITextFieldDelegate {
     
     let family = Family()
     var id: String?
@@ -74,7 +74,4 @@ class ChildrenCell: UITableViewCell, UITextFieldDelegate, Subscriber {
  
     }
     
-    func update() {
-        //
-    }
 }

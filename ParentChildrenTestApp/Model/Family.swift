@@ -110,10 +110,6 @@ class Family {
         childrensId!.append(id)
         childrensNames!.append(name)
         childrensAges!.append(age)
-        let defaults = UserDefaults.standard
-        defaults.set(childrensId, forKey: "idArray")
-        defaults.set(childrensNames, forKey: "childrensNamesArray")
-        defaults.set(childrensAges, forKey: "childrensAgesArray")
         notifySubscribers ()
     }
     
@@ -137,17 +133,10 @@ class Family {
                    return
                }
         
-        var newChildrensNamesArray = childrensNames
-        var newChildrensAgesArray = childrensAges
-        var newChildrensIdArray = childrensId
+        childrensId?.remove(at: index)
+        childrensNames?.remove(at: index)
+        childrensAges?.remove(at: index)
         
-        newChildrensNamesArray?.remove(at: index)
-        newChildrensAgesArray?.remove(at: index)
-        newChildrensIdArray?.remove(at: index)
-        
-        childrensNames = newChildrensNamesArray
-        childrensAges = newChildrensAgesArray
-        childrensId = newChildrensIdArray
         notifySubscribers ()
     
     }

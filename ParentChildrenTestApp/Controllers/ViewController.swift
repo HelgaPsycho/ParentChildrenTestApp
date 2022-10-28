@@ -19,8 +19,6 @@ class ViewController: UIViewController, UITextFieldDelegate, Subscriber {
     
     @IBOutlet weak var addButton: UIButton!
     
-    @IBOutlet weak var children1: UIStackView!
-    
     @IBOutlet weak var clearButton: UIButton!
     
     
@@ -28,15 +26,10 @@ class ViewController: UIViewController, UITextFieldDelegate, Subscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-//
-//        family.childrensId = []
-//        family.childrensNames = []
-//        family.childrensAges = []
         
         nameTextField.delegate = self
         ageTextField.delegate = self
         
-        children1.removeFromSuperview()
         startUISettings()
         
         family.subscribe(subscriber: self)
@@ -67,30 +60,33 @@ class ViewController: UIViewController, UITextFieldDelegate, Subscriber {
 
     }
     
-    @IBAction func clearButtonPressed(_ sender: UIButton) {
+    @IBAction func clearButtonPressed(_ sender: UIButton){
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Сбросить данные", style: .destructive, handler: { (UIAlertAction) in print ("Сбросить данные")
             self.family.deleteAllChildrens()
         }))
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: { (UIAlertAction) in print ("Oтмена")}))
+        
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = clearButton.frame
        
         present(alert, animated: true, completion: nil)
     }
-    
+
     
     func startUISettings () {
         nameTextField.text = family.parentName
         ageTextField.text = family.parentAge
         nameTextField.borderStyle = .roundedRect
         ageTextField.borderStyle = .roundedRect
-        
+
         addButton.layer.cornerRadius = 20
         addButton.layer.borderWidth = 2
-        addButton.layer.borderColor = CGColor(red: 0.07, green: 0.45, blue: 0.87, alpha: 1.00)
+        addButton.layer.borderColor = UIColor.systemBlue.cgColor
         
         clearButton.layer.cornerRadius = 20
         clearButton.layer.borderWidth = 2
-        clearButton.layer.borderColor = CGColor(red: 0.86, green: 0.24, blue: 0.00, alpha: 1.00)
+        clearButton.layer.borderColor = UIColor.systemRed.cgColor
         clearButton.titleLabel?.textColor = UIColor.systemRed
         
     }
