@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "ragtextfield",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/raginmari/RAGTextField",
+      "state" : {
+        "revision" : "f40f56e6b9700a3711c72b48af9369032bc063ad",
+        "version" : "0.14.0"
+      }
+    }
+  ],
+  "version" : 2
+}
