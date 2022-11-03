@@ -39,17 +39,13 @@ class ChildrenCell: UITableViewCell, UITextFieldDelegate {
         deleteButtonConfigure()
         textFieldConfigure()
         
+        
     }
 
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        
-//        // Configure the view for the selected state
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
+       // textField.resignFirstResponder()
         return true
     }
     
@@ -73,5 +69,5 @@ class ChildrenCell: UITableViewCell, UITextFieldDelegate {
         family.changeChildren(id: id!, name: nameTextField.text ?? "", age: ageTextField.text ?? "")
  
     }
-    
+
 }

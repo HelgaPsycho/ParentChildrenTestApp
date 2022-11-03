@@ -31,7 +31,8 @@ class Family {
     
     var parentAge: String? {
         get {
-            return UserDefaults.standard.string(forKey: "age")
+            if let age = UserDefaults.standard.string(forKey: "age"){return age}
+            else {return ""}
             
         }
         
@@ -41,6 +42,9 @@ class Family {
             if let parentAge = newValue {
                 print ("Value \(String(describing: newValue)) added to key \(key)")
                 defaults.set(parentAge, forKey: "age")
+            }
+            else {
+                defaults.removeObject(forKey: key)
             }
             
         }
@@ -139,6 +143,12 @@ class Family {
         
         notifySubscribers ()
     
+    }
+    
+    func deleteParent() {
+         parentName = nil
+         parentAge = nil
+        notifySubscribers()
     }
     
     

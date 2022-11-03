@@ -10,7 +10,7 @@ import UIKit
 class TableViewController: UITableViewController, UITextFieldDelegate, Subscriber {
     
     var family = Family()
-
+    
     @IBOutlet var childrensTableView: UITableView!
     
     override func viewDidLoad() {
@@ -19,8 +19,8 @@ class TableViewController: UITableViewController, UITextFieldDelegate, Subscribe
         tableView.register(ChildrenCell.nib(), forCellReuseIdentifier: ChildrenCell.identifier)
         self.tableView.rowHeight = 150
         family.subscribe(subscriber: self)
-
-        // Do any additional setup after loading the view.
+        
+       dismissKeyboardWhenTouchOutside()
     }
     
     
@@ -51,6 +51,10 @@ class TableViewController: UITableViewController, UITextFieldDelegate, Subscribe
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
+  
+    
+    
+    
     /*
     // MARK: - Navigation
 
@@ -72,4 +76,16 @@ class TableViewController: UITableViewController, UITextFieldDelegate, Subscribe
                 }
     }
 
+
+    func dismissKeyboardWhenTouchOutside () {
+    
+    let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+            tap.cancelsTouchesInView = false
+            view.addGestureRecognizer(tap)
+        
+        tableView.keyboardDismissMode = .onDrag
+
+    }
+    
 }
+

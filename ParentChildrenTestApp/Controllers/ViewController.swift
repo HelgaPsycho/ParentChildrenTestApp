@@ -33,17 +33,26 @@ class ViewController: UIViewController, UITextFieldDelegate, Subscriber {
         startUISettings()
         
         family.subscribe(subscriber: self)
+        
+        dismissKeyboardWhenTouchOutside()
+        
+        
+    
+        
     }
+    
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
+       // textField.resignFirstResponder()
         return true
     }
     
     internal func textFieldDidEndEditing(_ textField: UITextField) {
         family.parentName = nameTextField.text
         family.parentAge = ageTextField.text
-       // return textField.text!
+               // return textField.text!
     }
 
     @IBAction func addButtonPressed(_ sender: Any) {
@@ -64,6 +73,7 @@ class ViewController: UIViewController, UITextFieldDelegate, Subscriber {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Сбросить данные", style: .destructive, handler: { (UIAlertAction) in print ("Сбросить данные")
             self.family.deleteAllChildrens()
+            self.family.deleteParent()
         }))
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: { (UIAlertAction) in print ("Oтмена")}))
         
@@ -92,8 +102,18 @@ class ViewController: UIViewController, UITextFieldDelegate, Subscriber {
     }
     
     func update() {
-        //
+        nameTextField.text = self.family.parentName
+        ageTextField.text = self.family.parentAge
+        self.reloadInputViews()
     }
-
+    
+    func dismissKeyboardWhenTouchOutside () {
+    
+    let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+            tap.cancelsTouchesInView = false
+            view.addGestureRecognizer(tap)
+        
+    }
+        
 }
 
